@@ -1,7 +1,34 @@
 {
   "name": "RemoteVNC",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "Remote Control your Desktop using a Web Browser via RemoteVNC🔥",
+  "keywords": [
+    "NextJS",
+    "React",
+    "Typescript",
+    "JavaScript",
+    "Html",
+    "Css",
+    "Sass",
+    "Eslint",
+    "Prettier",
+    "Remote",
+    "VNC"
+  ],
+  "homepage": "https://ajaykanniyappan.github.io/RemoteVNC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AjayKanniyappan/RemoteVNC.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AjayKanniyappan/RemoteVNC/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Ajay Kanniyappan",
+    "email": "ajaykanniyappan@gmail.com",
+    "url": "https://ajaykanniyappan.com"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -18,5 +45,9 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "4.9.3"
+  },
+  "engines": {
+    "node": ">=14.x",
+    "npm": ">=6.x"
   }
 }
