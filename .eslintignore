@@ -1,0 +1,10 @@
+# Dependency directories
+node_modules/
+
+# Temporary folders
+app/dist
+release/build
+
+# Temporary files
+package-lock.json
+yarn.lock
