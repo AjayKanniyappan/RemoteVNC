@@ -31,10 +31,10 @@
   },
   "scripts": {
     "build": "next build",
-    "dev": "next dev",
+    "dev": "next dev -p 5050",
     "lint": "next lint --fix --max-warnings 0 .",
     "prepare": "husky install",
-    "start": "next start"
+    "start": "next start -p 5050"
   },
   "dependencies": {
     "next": "13.0.4",
