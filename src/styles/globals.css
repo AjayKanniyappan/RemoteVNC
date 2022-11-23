@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --color-1: #442288;
   --color-2: #6ca2ea;
@@ -17,29 +21,31 @@ body {
 h1 {
   color: #fff;
   text-align: center;
-  font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 6.5vw;
   font-weight: 900;
   line-height: 6vw;
   text-transform: uppercase;
   word-spacing: 100vw;
-  background: linear-gradient(var(--angle),
-      var(--color-1) 19%,
-      transparent 19%,
-      transparent 20%,
-      var(--color-2) 20%,
-      var(--color-2) 39%,
-      transparent 39%,
-      transparent 40%,
-      var(--color-3) 40%,
-      var(--color-3) 59%,
-      transparent 59%,
-      transparent 60%,
-      var(--color-4) 60%,
-      var(--color-4) 79%,
-      transparent 79%,
-      transparent 80%,
-      var(--color-5) 80%);
+  background: linear-gradient(
+    var(--angle),
+    var(--color-1) 19%,
+    transparent 19%,
+    transparent 20%,
+    var(--color-2) 20%,
+    var(--color-2) 39%,
+    transparent 39%,
+    transparent 40%,
+    var(--color-3) 40%,
+    var(--color-3) 59%,
+    transparent 59%,
+    transparent 60%,
+    var(--color-4) 60%,
+    var(--color-4) 79%,
+    transparent 79%,
+    transparent 80%,
+    var(--color-5) 80%
+  );
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -53,7 +59,7 @@ h1 {
 }
 
 @property --angle {
-  syntax: "<angle>";
+  syntax: '<angle>';
   initial-value: 0deg;
   inherits: false;
 }
