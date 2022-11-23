@@ -1,5 +1,5 @@
 {
-  "name": "RemoteVNC",
+  "name": "remotevnc",
   "version": "1.0.0",
   "description": "Remote Control your Desktop using a Web Browser via RemoteVNC🔥",
   "keywords": [
@@ -30,20 +30,31 @@
     "url": "https://ajaykanniyappan.com"
   },
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint --fix --max-warnings 0 ."
+    "dev": "next dev",
+    "lint": "next lint --fix --max-warnings 0 .",
+    "prepare": "husky install",
+    "start": "next start"
   },
   "dependencies": {
+    "next": "13.0.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
+    "@typescript-eslint/eslint-plugin": "^5.44.0",
+    "@typescript-eslint/parser": "^5.44.0",
     "eslint": "8.28.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-next": "13.0.4",
-    "next": "13.0.4",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.0",
+    "prettier": "^2.8.0",
     "typescript": "4.9.3"
   },
   "engines": {
