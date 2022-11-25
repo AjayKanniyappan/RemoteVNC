@@ -5,6 +5,13 @@
       "@Components/*": ["./Components/*"]
     }
   },
-  "include": ["next.config.js", "next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next.config.js",
+    "postcss.config.js",
+    "tailwind.config.js",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
   "exclude": ["node_modules"]
 }
