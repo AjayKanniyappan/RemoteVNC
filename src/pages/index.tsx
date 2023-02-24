@@ -1,7 +1,9 @@
-export default function Home() {
+import Home from '@components/Home';
+
+export default function Main() {
   return (
     <main>
-      <div className="text-3xl font-bold">Hello</div>
+      <Home />
     </main>
   );
 }
