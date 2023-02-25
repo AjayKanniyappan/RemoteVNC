@@ -1,9 +1,9 @@
-import Login from '@components/Login';
+import Form from '@components/Form';
 
 export default function control() {
   return (
     <div>
-      <Login />
+      <Form />
     </div>
   );
 }
