@@ -1,3 +1,5 @@
+import Client from '@/services/Client';
+
 function Form() {
   const handleSubmit = (event: React.FormEvent<vnc.LoginFormElements>) => {
     event.preventDefault();
@@ -6,6 +8,8 @@ function Form() {
       port: parseInt(event.currentTarget.elements.port.value, 10),
       password: event.currentTarget.elements.password.value,
     };
+    const client = new Client(config);
+    client.connectServer();
     // eslint-disable-next-line no-console
     console.log(config);
   };

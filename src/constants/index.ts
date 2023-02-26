@@ -1,4 +1,4 @@
-const keyMap = {
+const keyMap: vnc.KeyLiteral = {
   8: [65288, 65288],
   9: [65289, 65289],
   13: [65293, 65293],
