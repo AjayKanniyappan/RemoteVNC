@@ -1,5 +1,5 @@
 import { io as IOClient, Socket } from 'socket.io-client';
-import Screen from '@/helpers/Screen';
+import Screen from '@helpers/Screen';
 import getKeyCode from '@utils/getKeyCode';
 
 class Client {
