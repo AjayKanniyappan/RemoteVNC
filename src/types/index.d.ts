@@ -2,6 +2,13 @@ declare namespace vnc {
   type Api = {
     Boom: string;
   };
+  type Client = {
+    config: vnc.Config;
+    socket: Socket;
+    interval: NodeJS.Timer | number;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    RFBC: any;
+  };
   type Config = {
     host: string;
     port: number;

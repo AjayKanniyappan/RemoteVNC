@@ -1,4 +1,4 @@
-import EventEmitter from 'events';
+import { EventEmitter } from 'events';
 
 class Screen {
   public event = new EventEmitter();
@@ -8,7 +8,7 @@ class Screen {
   }
 
   // eslint-disable-next-line class-methods-use-this, @typescript-eslint/no-unused-vars
-  init(width: number, height: number) {}
+  init(width: number, height: number) { }
 
   drawFrame(frame: vnc.DrawFrame) {
     // eslint-disable-next-line no-console

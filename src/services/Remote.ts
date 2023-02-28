@@ -1,9 +1,11 @@
-import { createConnection } from 'rfb2';
+import RFB, { createConnection, RfbClient } from 'rfb2';
 
 class Remote {
   public config;
 
-  public remote: unknown;
+  public remote!: RfbClient;
+
+  public RFB = RFB;
 
   constructor(configuration: vnc.Config) {
     this.config = configuration;
@@ -20,7 +22,7 @@ class Remote {
         resolve(this.remote);
       } catch (error) {
         reject(error);
-        throw new Error(`Remote error: ${error}`);
+        throw new Error(`Remote server error: ${error}`);
       }
     });
   }

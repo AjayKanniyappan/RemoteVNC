@@ -1,6 +1,6 @@
-import Client from '@/services/Client';
+import Client from '@services/Client';
 
-function Form() {
+function Form(): JSX.Element {
   const handleSubmit = (event: React.FormEvent<vnc.LoginFormElements>) => {
     event.preventDefault();
     const config: vnc.Config = {
@@ -10,8 +10,6 @@ function Form() {
     };
     const client = new Client(config);
     client.connectServer();
-    // eslint-disable-next-line no-console
-    console.log(config);
   };
 
   return (
@@ -49,7 +47,6 @@ function Form() {
                 placeholder="password"
                 id="password"
                 name="password"
-                required
               />
             </div>
             <div className="form-control mt-6">

@@ -23,6 +23,21 @@ function SocketHandler(_req: NextApiRequest, res: NextApiResponseWithSocket) {
     io.sockets.on('connection', (socket) => {
       const server = new Server(socket);
       server.connectClient();
+      server.event.on('connect', () => {
+        // For Debugging Purpose Only
+        // eslint-disable-next-line no-console
+        console.log('RemoteVNC client connected');
+      });
+      server.event.on('disconnect', () => {
+        // For Debugging Purpose Only
+        // eslint-disable-next-line no-console
+        console.log('RemoteVNC client disconnected');
+      });
+      server.event.on('error', (error) => {
+        // For Debugging Purpose Only
+        // eslint-disable-next-line no-console
+        console.error('RemoteVNC error', error);
+      });
     });
   }
   res.end();

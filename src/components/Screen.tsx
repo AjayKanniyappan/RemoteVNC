@@ -1,4 +1,4 @@
-function Screen() {
+function Screen(): JSX.Element {
   return <canvas id="screen" />;
 }
 
