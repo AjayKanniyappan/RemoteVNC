@@ -1,16 +1,19 @@
 import { io as IOClient, Socket } from 'socket.io-client';
-import Screen from '@helpers/Screen';
 import getKeyCode from '@utils/getKeyCode';
 
 class Client {
   public config: vnc.Config;
 
+  public interruptConnection!: (error: unknown) => void;
+
   public socket!: Socket;
 
-  public screen = new Screen();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public screen: any;
 
-  constructor(configuration: vnc.Config) {
+  constructor(configuration: vnc.Config, screen: unknown) {
     this.config = configuration;
+    this.screen = screen;
   }
 
   async connectServer() {
@@ -19,6 +22,14 @@ class Client {
     this.socket.emit('init', this.config);
     this.socket.on('reconnect', () => {
       this.socket.emit('init', this.config);
+    });
+    this.socket.on('error', (error) => {
+      if (/* !this.screen.hasHandlers && */ this.interruptConnection) {
+        this.interruptConnection(error);
+      } else {
+        this.disconnect();
+        this.screen.event.emit('error', error);
+      }
     });
     return this.socketHandler();
   }
@@ -29,11 +40,11 @@ class Client {
         this.disconnect();
         reject(new Error('Connect timed out'));
       }, 2000);
-      /*  self._interruptConnect = (error) => {
+      this.interruptConnection = (error) => {
         clearTimeout(timeout);
         this.disconnect();
         reject(error);
-      }; */
+      };
       this.socket.on('init', (config) => {
         clearTimeout(timeout);
         this.screen.init(config.width, config.height);

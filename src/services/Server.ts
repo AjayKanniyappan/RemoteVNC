@@ -1,8 +1,9 @@
 import { Socket } from 'Socket.IO';
-import { PNG } from 'pngjs';
 import { EventEmitter } from 'events';
 import getRgba from '@utils/getRgba';
 import Remote from '@services/Remote';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { PNG } from 'pngjs';
 
 class Server {
   public clients: vnc.Client[] = [];
@@ -39,9 +40,6 @@ class Server {
           RFBC: this.remoteInstance,
         };
         this.eventHandler(client);
-        this.remoteInstance.on('connect', () => {
-          this.remoteInstance.updateClipboard('https://ajaykanniyappan.com');
-        });
         this.socket.on('mouse', (event) => {
           this.remoteInstance.pointerEvent(event.x, event.y, event.button);
         });
@@ -80,7 +78,10 @@ class Server {
   }
 
   eventHandler(client: vnc.Client) {
-    this.remoteInstance.on('connect', this.connectionHandler(client));
+    this.remoteInstance.on('connect', () => {
+      this.remoteInstance.updateClipboard('https://ajaykanniyappan.com');
+      this.connectionHandler(client);
+    });
     this.remoteInstance.on('error', (error: unknown) => {
       this.socket.emit('error', error);
       this.disconnectClient(client);
@@ -88,7 +89,7 @@ class Server {
     this.remoteInstance.on('clipboard', (newCopyData: unknown) => {
       // For Debugging Purpose Only
       // eslint-disable-next-line no-console
-      console.log('remote clipboard updated!', newCopyData);
+      console.log('RemoteVNC clipboard updated!', newCopyData);
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     this.remoteInstance.on('rect', (frame: any) => {
