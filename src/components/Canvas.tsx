@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import styles from '@styles/Canvas.module.css';
 
 function Canvas({ setCanvas, setContext }: vnc.CanvasProps): JSX.Element {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -12,7 +13,7 @@ function Canvas({ setCanvas, setContext }: vnc.CanvasProps): JSX.Element {
 
   return (
     <div className="h-screen absolute w-full overflow-hidden">
-      <canvas className="cursor-none" ref={canvasRef} />
+      <canvas className={styles.canvas} ref={canvasRef} />
     </div>
   );
 }

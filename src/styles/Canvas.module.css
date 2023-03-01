@@ -1,0 +1,9 @@
+.canvas {
+  -webkit-transition: opacity 1s;
+  -moz-transition: opacity 1s;
+  -webkit-transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+  transition: opacity 1s;
+  transform-origin: 0 0;
+  cursor: none;
+}
