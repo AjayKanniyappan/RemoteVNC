@@ -2,18 +2,11 @@ import { Socket } from 'Socket.IO';
 import { EventEmitter } from 'events';
 import getRgba from '@utils/getRgba';
 import Remote from '@services/Remote';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { PNG } from 'pngjs';
 
-class Server {
+class Server extends EventEmitter {
   public clients: vnc.Client[] = [];
 
-  public event = new EventEmitter();
-
   public initialFrame = false;
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public options: any = {};
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public remoteInstance: any;
@@ -23,6 +16,7 @@ class Server {
   public socket;
 
   constructor(socket: Socket) {
+    super();
     this.socket = socket;
   }
 
@@ -55,13 +49,13 @@ class Server {
     });
   }
 
-  connectionHandler(client: vnc.Client) {
+  connectionHandler(Client: vnc.Client) {
     this.remoteInstance.autoUpdate = true;
     this.socket.emit('init', {
       width: this.remoteInstance.width,
       height: this.remoteInstance.height,
     });
-    // eslint-disable-next-line no-param-reassign
+    const client = Client;
     client.interval = setInterval(() => {
       if (!this.initialFrame) {
         this.remoteInstance.requestUpdate(
@@ -74,7 +68,7 @@ class Server {
       }
     }, 300);
     this.clients.push(client);
-    this.event.emit('connect', client);
+    this.emit('connect', client);
   }
 
   eventHandler(client: vnc.Client) {
@@ -132,35 +126,12 @@ class Server {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  encodeFrame(frame: any, callBack: any) {
-    if (!this.options.png) {
+  encodeFrame(frame: any, callBack: { (image: vnc.Image): void }) {
+    if (this.initialFrame)
       callBack({
         encoding: 'raw',
         data: getRgba(frame.data),
       });
-    } else {
-      const RGBA = getRgba(frame.data);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const buffers: any[] = [];
-      const png = new PNG({
-        width: frame.width,
-        height: frame.height,
-      });
-      RGBA.copy(png.data, 0, 0, RGBA.length);
-      png.on('error', (error) => {
-        throw new Error(`PNG error: ${error.message}`);
-      });
-      png.on('data', (buf) => {
-        buffers.push(buf);
-      });
-      png.on('end', () => {
-        callBack({
-          encoding: 'png',
-          data: Buffer.concat(buffers).toString('base64'),
-        });
-      });
-      png.pack();
-    }
   }
 
   disconnectClient(client: vnc.Client) {
@@ -169,9 +140,9 @@ class Server {
       if (connection === client) {
         connection.RFBC.end();
         clearInterval(connection.interval);
-        this.event.emit('disconnect', client);
+        this.emit('disconnect', client);
         this.clients.splice(i, 1);
-        break;
+        return;
       }
     }
   }

@@ -1,5 +1,9 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function getRgba(src: any[]) {
+/**
+ * It takes a buffer of RGB data and returns a buffer of RGBA data
+ * @param {Buffer} src - The source buffer
+ * @returns A buffer of RGBA values.
+ */
+function getRgba(src: Buffer): Buffer {
   const rgba = Buffer.allocUnsafe(src.length);
   for (let i = 0; i < src.length; i += 4) {
     rgba[i] = src[i + 2];

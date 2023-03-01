@@ -2,6 +2,8 @@ declare namespace vnc {
   type Api = {
     Boom: string;
   };
+  type Canvas = HTMLCanvasElement | null | undefined;
+  type Context = CanvasRenderingContext2D | null | undefined;
   type Client = {
     config: vnc.Config;
     socket: Socket;
@@ -15,10 +17,14 @@ declare namespace vnc {
     password: string;
   };
   type Image = {
-    data: ArrayBuffer;
+    data: Buffer;
     encoding: string;
   };
 
+  interface CanvasProps {
+    setCanvas: (param: HTMLCanvasElement | null) => void;
+    setContext: (param: CanvasRenderingContext2D | undefined | null) => void;
+  }
   interface CopyFrame {
     width: number;
     height: number;

@@ -1,9 +1,7 @@
-import RFB, { createConnection, RfbClient } from 'rfb2';
+import RFB, { createConnection } from 'rfb2';
 
 class Remote {
   public config;
-
-  public remote!: RfbClient;
 
   public RFB = RFB;
 
@@ -14,12 +12,12 @@ class Remote {
   remoteConnection() {
     return new Promise((resolve, reject) => {
       try {
-        this.remote = createConnection({
+        const remote = createConnection({
           host: this.config.host,
           port: this.config.port,
           password: this.config.password,
         });
-        resolve(this.remote);
+        resolve(remote);
       } catch (error) {
         reject(error);
         throw new Error(`Remote server error: ${error}`);
