@@ -3,23 +3,16 @@ import ScreenHandler from '@helpers/ScreenHandler';
 import getKeyCode from '@utils/getKeyCode';
 
 class Client extends ScreenHandler {
-  public config: vnc.Config;
-
   public interruptConnection!: (error: unknown) => void;
 
   public socket!: Socket;
 
-  constructor(configuration: vnc.Config, canvas: vnc.Canvas, context: vnc.Context) {
-    super(canvas as HTMLCanvasElement, context as CanvasRenderingContext2D);
-    this.config = configuration;
-  }
-
-  async connectServer() {
+  async connectServer(configuration: vnc.Config, canvas: vnc.Canvas, context: vnc.Context) {
     await fetch('/api/socket');
     this.socket = IOClient();
-    this.socket.emit('init', this.config);
+    this.socket.emit('init', configuration);
     this.socket.on('reconnect', () => {
-      this.socket.emit('init', this.config);
+      this.socket.emit('init', configuration);
     });
     this.socket.on('error', (error) => {
       if (!this.hasHandlers && this.interruptConnection) {
@@ -29,10 +22,10 @@ class Client extends ScreenHandler {
         this.emit('error', error);
       }
     });
-    return this.socketHandler();
+    return this.socketHandler(canvas, context);
   }
 
-  socketHandler() {
+  socketHandler(canvas: vnc.Canvas, context: vnc.Context) {
     return new Promise<void>((resolve, reject) => {
       const timeout = setTimeout(() => {
         this.disconnectServer();
@@ -45,7 +38,12 @@ class Client extends ScreenHandler {
       };
       this.socket.on('init', (config) => {
         clearTimeout(timeout);
-        this.init(config.width, config.height);
+        this.init(
+          config.width,
+          config.height,
+          canvas as HTMLCanvasElement,
+          context as CanvasRenderingContext2D,
+        );
         this.screenHandler();
         resolve();
       });
@@ -84,7 +82,7 @@ class Client extends ScreenHandler {
       this.hasHandlers = false;
     }
     this.removeHandlers();
-    this.socket.disconnect();
+    this.socket?.disconnect();
   }
 }
 

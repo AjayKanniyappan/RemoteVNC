@@ -10,6 +10,9 @@
 /build/
 /dist/
 
+# IGNORE
+index.d.ts
+
 # ENV FILES
 .env
 .env*.local

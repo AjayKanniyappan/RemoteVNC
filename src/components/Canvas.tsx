@@ -1,7 +1,12 @@
 import { useEffect, useRef } from 'react';
 import styles from '@styles/Canvas.module.css';
 
-function Canvas({ setCanvas, setContext }: vnc.CanvasProps): JSX.Element {
+/**
+ * It renders a canvas element and passes the canvas and context to the parent component
+ * @param  - CanvasProps
+ * @returns A React component that renders a canvas element.
+ */
+function Canvas({ setCanvas, setContext, show }: vnc.CanvasProps): JSX.Element {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -12,7 +17,10 @@ function Canvas({ setCanvas, setContext }: vnc.CanvasProps): JSX.Element {
   }, [setCanvas, setContext]);
 
   return (
-    <div className="h-screen absolute w-full overflow-hidden">
+    <div
+      className="absolute w-full h-full overflow-hidden"
+      style={{ display: show ? 'block' : 'none' }}
+    >
       <canvas className={styles.canvas} ref={canvasRef} />
     </div>
   );

@@ -1,9 +1,9 @@
-import Form from '@components/Form';
+import { Controller } from '@components/index';
 
 export default function control(): JSX.Element {
   return (
     <div>
-      <Form />
+      <Controller />
     </div>
   );
 }

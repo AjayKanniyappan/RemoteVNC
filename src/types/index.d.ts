@@ -8,7 +8,6 @@ declare namespace vnc {
     config: vnc.Config;
     socket: Socket;
     interval: NodeJS.Timer | number;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     RFBC: any;
   };
   type Config = {
@@ -21,9 +20,16 @@ declare namespace vnc {
     encoding: string;
   };
 
+  interface ButtonProps {
+    click: () => void;
+  }
+  interface FormProps {
+    formSubmit: (param: React.FormEvent<LoginFormElements>) => void;
+  }
   interface CanvasProps {
     setCanvas: (param: HTMLCanvasElement | null) => void;
     setContext: (param: CanvasRenderingContext2D | undefined | null) => void;
+    show: boolean
   }
   interface CopyFrame {
     width: number;
