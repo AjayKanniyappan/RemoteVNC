@@ -82,7 +82,7 @@ class Client extends ScreenHandler {
       this.hasHandlers = false;
     }
     this.removeHandlers();
-    this.socket?.disconnect();
+    this.socket.disconnect();
   }
 }
 

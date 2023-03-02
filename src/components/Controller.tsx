@@ -4,16 +4,16 @@ import Button from '@components/Button';
 import Canvas from '@components/Canvas';
 import Form from '@components/Form';
 
+/* Client Object Instance */
+const client = new Client();
+
 function Controller(): JSX.Element {
   const [canvas, setCanvas] = useState<vnc.Canvas>(null);
   const [context, setContext] = useState<vnc.Context>(null);
   const [isShow, setIsShow] = useState(false);
 
-  const client = new Client();
-
-  const onSubmit = (event: React.FormEvent<vnc.LoginFormElements>) => {
+  const onSubmit = async (event: React.FormEvent<vnc.LoginFormElements>) => {
     event.preventDefault();
-    setIsShow(true);
     const config: vnc.Config = {
       host: event.currentTarget.elements.host.value,
       port: parseInt(event.currentTarget.elements.port.value, 10),
@@ -21,15 +21,16 @@ function Controller(): JSX.Element {
     };
 
     try {
-      client.connectServer(config, canvas, context);
+      await client.connectServer(config, canvas, context);
+      setIsShow(true);
     } catch (error: unknown) {
       throw new Error('Error!');
     }
   };
 
   const onClick = () => {
-    setIsShow(false);
     client.disconnectServer();
+    setIsShow(false);
   };
 
   return (

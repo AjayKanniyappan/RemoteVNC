@@ -64,7 +64,7 @@ class ScreenHandler extends EventEmitter {
     document.addEventListener(
       'keyup',
       (event) => {
-        this.onkeydown(event);
+        this.onkeyup(event);
       },
       false,
     );
