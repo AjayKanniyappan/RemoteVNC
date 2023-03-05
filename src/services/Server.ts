@@ -1,4 +1,4 @@
-import { Socket } from 'Socket.IO';
+import { Socket } from 'socket.io';
 import { EventEmitter } from 'events';
 import getRgba from '@utils/getRgba';
 import Remote from '@services/Remote';
