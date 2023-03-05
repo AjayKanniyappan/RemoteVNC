@@ -29,7 +29,7 @@ declare namespace vnc {
   interface CanvasProps {
     setCanvas: (param: HTMLCanvasElement | null) => void;
     setContext: (param: CanvasRenderingContext2D | undefined | null) => void;
-    show: boolean
+    show: boolean;
   }
   interface CopyFrame {
     width: number;
@@ -58,5 +58,8 @@ declare namespace vnc {
   }
   interface KeyLiteral {
     [key: number]: number[];
+  }
+  interface Svg {
+    className?: string;
   }
 }
