@@ -1,4 +1,4 @@
-import { Server as IOServer } from 'Socket.IO';
+import { Server as IOServer } from 'socket.io';
 import Server from '@services/Server';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import type { Server as HTTPServer } from 'http';
