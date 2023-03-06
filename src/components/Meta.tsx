@@ -32,24 +32,10 @@ function Meta(): JSX.Element {
       <meta name="application-name" content="Cats Realm" />
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       {/* ICONS */}
-      <link
-        rel="apple-touch-icon"
-        sizes="180x180"
-        href={`${process.env.BASE_PATH}/icons/apple-touch-icon.png`}
-      />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="32x32"
-        href={`${process.env.BASE_PATH}/icons/favicon-32x32.png`}
-      />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="16x16"
-        href={`${process.env.BASE_PATH}/icons/favicon-16x16.png`}
-      />
-      <link rel="manifest" href={`${process.env.BASE_PATH}/manifest.json`} />
+      <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
+      <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
+      <link rel="manifest" href="/manifest.json" />
       {/* OG TAGS */}
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://ajaykanniyappan.github.io/RemoteVNC" />
